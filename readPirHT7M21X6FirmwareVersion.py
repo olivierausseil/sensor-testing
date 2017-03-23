@@ -7,4 +7,4 @@ a = bus.read_i2c_block_data(0x4c,10,2) # go read the firmware version
 major = format(a[0],'02x') # high byte
 minor = format(a[1],'02x') # low byte
 
-print ("Pir sensor firmware version is : " + major +"."+ minor) # display the value
+print ("PIR sensor firmware version is : " + major +"."+ minor) # display the value

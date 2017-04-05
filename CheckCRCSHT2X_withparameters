@@ -47,13 +47,13 @@ for index in range(6):
     frame_int.append(int(substrhex, 16))
 
 #print frame_int
+
 # we separate the frame to 2 tabs
 humidity_tab = frame_int[0:3]
 temperature_tab = frame_int[3:6]
 
 #print humidity_tab
 #print temperature_tab
-
 
 if check_crc_tab(humidity_tab) == False:
     print ("wrong_crc for humidity: " + str(humidity_tab))
@@ -64,22 +64,3 @@ if check_crc_tab(temperature_tab) == False:
     print ("wrong_crc for temperature: " + str(temperature_tab))
 else:
     print ("crc OK for temperature")
-
-#get the humidity message
-#frame_character_humidity_str = frame_character[:6]
-#print frame_character_humidity_str
-
-#convert str data to int data
-#frame_character_humidity_int = []
-#for frame_character_humidity_str in frame_character_humidity_str:
-#    number = ord(frame_character_humidity_str) - 55
-#    frame_character_humidity_int.append(number)
-#print frame_character_humidity_int
-
-
-#print frame_character_humidity
-#print type(frame_character_humidity)
-
-#get the temperature message
-#frame_character_temperature = frame_character[-6:]
-#print frame_character_temperature

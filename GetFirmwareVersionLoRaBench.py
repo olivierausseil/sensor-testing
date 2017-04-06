@@ -3,6 +3,8 @@
 import time
 import serial
 import crcmod
+import LoRaBench
+import numpy as np
 
 ser = serial.Serial(
     port='/dev/ttyUSB0',
@@ -14,16 +16,22 @@ ser = serial.Serial(
     )
 counter=0
 
-frame = bytearray([0x02,0x04,0x01,0xE9,0x76,0x03])
-print frame[0]
-ser.write(frame)
+#frame = bytearray([0x02,0x04,0x01,0xE9,0x76,0x03])
+frametx = LoRaBench.LoRaBenchEncodeFrame([0x01])
+print ("Sending frame: " + str(frametx))
+ser.write(frametx)
 
-frameout = bytearray()
+framerx = bytearray()
 
 x=ser.read(1)
 while len(x) != 0:
-    frameout.append(x[0])
+    framerx.append(x[0])
     x=ser.read(1)
 
-for index in range(len(frameout)):
-    print hex(frameout[index])
+# can display the result to the same line
+np.set_printoptions(formatter={'int':hex })
+print np.array(framerx)
+#print ("Received frame: " + str(framerx))
+
+#for index in range(len(framerx)):
+#    print hex(framerx[index])
